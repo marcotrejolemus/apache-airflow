@@ -15,6 +15,107 @@ Ensure you have the following installed on your system:
 ---
 
 ## ⚙️ Installation Steps
+### 📦 Enable Apache Airflow on Your Local Computer
+
+## Prerequisites
+Before installing Airflow, ensure you have the following:
+
+- Python 3.8 or higher installed
+- pip (Python package manager) updated
+- Virtual environment (recommended to isolate dependencies)
+- Docker (optional, for easier environment setup)
+
+## Step 1: Install Python and Virtual Environment
+### Check your Python version:
+```bash
+python --version
+```
+If not installed, download and install Python from [python.org](https://www.python.org/).
+
+### Upgrade pip and install virtualenv:
+```bash
+pip install --upgrade pip
+pip install virtualenv
+```
+
+## Step 2: Set Up a Virtual Environment
+Create a virtual environment for Airflow (optional but recommended):
+```bash
+python -m venv airflow-env
+```
+### Activate the virtual environment:
+- **Windows:**
+  ```bash
+  airflow-env\Scripts\activate
+  ```
+- **Mac/Linux:**
+  ```bash
+  source airflow-env/bin/activate
+  ```
+
+## Step 3: Install Apache Airflow
+Airflow requires a specific home directory. Set it up before installation:
+```bash
+# Linux/macOS
+export AIRFLOW_HOME=~/airflow  
+
+# Windows (CMD)
+set AIRFLOW_HOME=C:\airflow    
+
+# Windows (PowerShell)
+$env:AIRFLOW_HOME="C:\airflow"
+```
+Then, install Airflow using pip:
+```bash
+pip install apache-airflow
+```
+For a full installation including common extras (like database and authentication support), use:
+```bash
+pip install apache-airflow[celery,postgres,redis]
+```
+
+## Step 4: Initialize Airflow Database
+Airflow requires a metadata database. Initialize it with:
+```bash
+airflow db init
+```
+
+## Step 5: Create an Admin User
+Create an admin user for Airflow’s web interface:
+```bash
+airflow users create \
+    --username admin \
+    --password admin \
+    --firstname Admin \
+    --lastname User \
+    --role Admin \
+    --email admin@example.com
+```
+
+## Step 6: Start Airflow
+Start the Airflow web server (runs on port 8080 by default):
+```bash
+airflow webserver --port 8080
+```
+Start the Airflow scheduler (responsible for DAG execution):
+```bash
+airflow scheduler
+```
+
+## Step 7: Access the Web UI
+Open your browser and go to:
+[http://localhost:8080](http://localhost:8080)
+Log in with the credentials you created.
+
+## Optional: Install Airflow with Docker (Easier Setup)
+If you prefer using Docker, create a `docker-compose.yaml` file and run:
+```bash
+docker-compose up
+```
+This automatically sets up Airflow and its dependencies.
+
+Now you have Apache Airflow running on your local machine! 🚀
+
 
 ### 1️⃣ Enable WSL2
 Open **PowerShell as Administrator** and run:
