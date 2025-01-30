@@ -91,6 +91,7 @@ airflow users create \
     --role Admin \
     --email admin@example.com
 ```
+Sample: airflow users create --username admin --password admin --firstname Admin --lastname User --role Admin --email admin@example.com
 
 ## Step 6: Start Airflow
 Start the Airflow web server (runs on port 8080 by default):
